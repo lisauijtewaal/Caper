@@ -14,7 +14,7 @@ class App extends Component {
             >
                 {
                     store.state === STATES.START_SCREEN &&
-                    // the view of the startscreen
+                    {/* the view of the startscreen */}
                     <div className="center start" key="start">
                         <p>{strings.START_INTRO}</p>
                         <p className="big">
@@ -25,7 +25,7 @@ class App extends Component {
                 }
                 {
                     store.state === STATES.WAIT_SCREEN &&
-                        // the view of the waitscreen
+                    {/* the view of the waitscreen */}
 
                     <div className="center wait" key="wait">
                         <p>{strings.WAIT_INTRO}</p>
@@ -35,8 +35,8 @@ class App extends Component {
                 }
                 {
                     store.state === STATES.GAME_SCREEN &&
-                        // the view of the game
 
+                    {/* the view of the game */}
                     <div className="game" key="game">
                         <div className="scores">
                             <div>
