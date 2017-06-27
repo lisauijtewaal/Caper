@@ -24,11 +24,14 @@ function stopTimeouts() {
     store.intervals.forEach(intervals => clearInterval(intervals));
 }
 
+/**
+ * A function to start the game
+ */
+
 function start(event) {
-    // Start and wait time for the apes to accept the game
-    // then start the actual game
     event.preventDefault();
     ion.sound.play('wacht');
+    // time to wait for the apes to accept the game
     store.state = STATES.WAIT_SCREEN;
     store.intervals.push(setInterval(() => {
         store.secondsToGo--;
@@ -36,13 +39,17 @@ function start(event) {
             stopTimeouts();
             store.state = STATES.GAME_SCREEN;
             store.secondsToGo = WAIT_TIME;
+            // then start the actual game
             startGame();
         }
     }, 1000));
 }
 
+/**
+ * a function to shuffle the images
+ */
+
 function shuffle(a) {
-    // a function to shuffle
     for (let i = a.length; i; i--) {
         let j = Math.floor(Math.random() * i);
         [a[i - 1], a[j]] = [a[j], a[i - 1]];
@@ -50,17 +57,24 @@ function shuffle(a) {
     return a;
 }
 
+/**
+ * creates a new grid with fruit images
+ */
+
 function newGrid() {
     const fruits = Object.keys(FRUIT);
-    // shuffle all fruit objects
+    // create random first (big) image)
     store.question = shuffle(fruits.filter(fruit => fruit !== store.question))[0];
     setTimeout(() => ion.sound.play(store.question), 1000);
     const otherFruits = fruits.filter(fruit => fruit !== store.question);
+    // shuffle the images in the grid
     store.grid = shuffle([store.question, ...shuffle([...otherFruits, ...otherFruits, ...otherFruits]).slice(0, 15)]);
 }
+/**
+ * check answer and give feedback (upgrade score and play sound)
+ */
 
 function giveAnswer(answer) {
-    // check answer and give feedback (upgrade score and play sound)
     if(answer === store.question) {
         store.yourScore++;
         ion.sound.play('correct');
