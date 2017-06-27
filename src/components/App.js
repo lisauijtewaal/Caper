@@ -14,7 +14,6 @@ class App extends Component {
             >
                 {
                     store.state === STATES.START_SCREEN &&
-                    {/* the view of the startscreen */}
                     <div className="center start" key="start">
                         <p>{strings.START_INTRO}</p>
                         <p className="big">
@@ -25,8 +24,6 @@ class App extends Component {
                 }
                 {
                     store.state === STATES.WAIT_SCREEN &&
-                    {/* the view of the waitscreen */}
-
                     <div className="center wait" key="wait">
                         <p>{strings.WAIT_INTRO}</p>
                         <p className="big">{store.secondsToGo}</p>
@@ -35,13 +32,10 @@ class App extends Component {
                 }
                 {
                     store.state === STATES.GAME_SCREEN &&
-
-                    {/* the view of the game */}
                     <div className="game" key="game">
                         <div className="scores">
                             <div>
                                 <div>Jouw score</div>
-                                //progressbar
                                 <div className="bar"><div className="progress" style={{width: `${store.yourScore / 10 * 100}%`}} /></div>
                                 <div>{store.yourScore} / 10</div>
                             </div>
@@ -56,7 +50,6 @@ class App extends Component {
                         </CSSTransitionGroup>
                         <p>Kan jij de {store.question} vinden?</p>
                         <CSSTransitionGroup transitionName="grid" transitionEnterTimeout={250} transitionLeaveTimeout={1100}>
-                            // the other images
                             <div className="grid" key={store.grid.join()}>
                                 {store.grid.map((fruit, i) =>
                                     <img
